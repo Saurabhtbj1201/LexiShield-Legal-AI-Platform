@@ -238,7 +238,7 @@ npm run dev
 ## 👨💻 Developer
 <div align="center">
 
-### © Made with ❤️ by Saurabh Kumar. All Rights Reserved 2025
+### © Made with ❤️ by Saurabh Kumar. All Rights Reserved 2026
 
 <a href="https://github.com/Saurabhtbj1201">
   <img src="https://github.com/Saurabhtbj1201.png" width="100" style="border-radius: 50%; border: 3px solid #0366d6;" alt="Saurabh Profile"/>
