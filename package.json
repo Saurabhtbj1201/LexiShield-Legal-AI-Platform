@@ -1,0 +1,30 @@
+{
+  "name": "lexishield",
+  "version": "2.0.0",
+  "description": "LexiShield — GenAI Legal Document Navigator & Risk Radar",
+  "private": true,
+  "scripts": {
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "build:client": "cd client && npm install --legacy-peer-deps && npm run build",
+    "build:server": "cd server && npm install",
+    "build": "npm run build:server && npm run build:client",
+    "start": "cd server && npm start",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install --legacy-peer-deps"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "keywords": [
+    "legaltech",
+    "genai",
+    "gemini",
+    "legal-assistance",
+    "contract-analysis",
+    "risk-radar",
+    "promptwars"
+  ],
+  "author": "Saurabh Kumar",
+  "license": "MIT"
+}
