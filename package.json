@@ -11,6 +11,7 @@
     "build:server": "cd server && npm install",
     "build": "npm run build:server && npm run build:client",
     "start": "cd server && npm start",
+    "test": "npm --prefix server test",
     "install:all": "npm install && cd server && npm install && cd ../client && npm install --legacy-peer-deps"
   },
   "devDependencies": {

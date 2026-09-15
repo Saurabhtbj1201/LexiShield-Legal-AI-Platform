@@ -1,6 +1,9 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import helmet from "helmet";
+import compression from "compression";
+import rateLimit from "express-rate-limit";
 import multer from "multer";
 import pdfParse from "pdf-parse";
 import path from "path";
@@ -22,15 +25,55 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+// Trust reverse proxy for deployment on Render / Cloudflare / Vercel
+app.set("trust proxy", 1);
+
+// Security & Efficiency Middleware
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
+        imgSrc: ["'self'", "data:", "https:"],
+        connectSrc: ["'self'", "https://generativelanguage.googleapis.com"]
+      }
+    },
+    crossOriginEmbedderPolicy: false
+  })
+);
+
+app.use(compression());
 app.use(cors());
 app.use(express.json({ limit: "20mb" }));
 app.use(express.urlencoded({ extended: true, limit: "20mb" }));
 
-// Configure multer for file uploads in-memory
+// Rate Limiting: General API Limiter (100 requests per 15 minutes)
+const generalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 150,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many requests from this IP, please try again after 15 minutes." }
+});
+
+// Strict Limiter for intensive GenAI Analysis & Parsing (30 requests per minute)
+const aiLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 30,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Rate limit exceeded for AI generation endpoints. Please wait a minute." }
+});
+
+app.use("/api/", generalLimiter);
+
+// Configure multer for document uploads (in-memory buffer, max 10MB)
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 10 * 1024 * 1024 } // 10MB
+  limits: { fileSize: 10 * 1024 * 1024 }
 });
 
 // Health check
@@ -38,8 +81,13 @@ app.get("/api/health", (req, res) => {
   res.json({
     status: "healthy",
     service: "LexiShield Legal AI API",
-    version: "1.0.0",
-    geminiConfigured: !!process.env.GEMINI_API_KEY
+    version: "2.0.0",
+    geminiConfigured: !!process.env.GEMINI_API_KEY,
+    security: {
+      helmet: true,
+      rateLimiting: true,
+      compression: true
+    }
   });
 });
 
@@ -49,23 +97,22 @@ app.get("/api/presets", (req, res) => {
 });
 
 // Analyze Contract (Text input)
-app.post("/api/analyze", async (req, res) => {
+app.post("/api/analyze", aiLimiter, async (req, res, next) => {
   try {
     const { text, apiKey } = req.body;
-    if (!text || text.trim().length === 0) {
-      return res.status(400).json({ error: "Contract text is required." });
+    if (!text || typeof text !== "string" || text.trim().length === 0) {
+      return res.status(400).json({ error: "Contract text is required and must be a non-empty string." });
     }
 
     const analysis = await analyzeContract(text, apiKey);
     res.json({ success: true, analysis });
   } catch (error) {
-    console.error("Analysis Error:", error);
-    res.status(500).json({ error: "Failed to analyze contract: " + error.message });
+    next(error);
   }
 });
 
 // Upload and Analyze Document (PDF, TXT, MD)
-app.post("/api/upload", upload.single("file"), async (req, res) => {
+app.post("/api/upload", aiLimiter, upload.single("file"), async (req, res, next) => {
   try {
     if (!req.file) {
       return res.status(400).json({ error: "No document file uploaded." });
@@ -84,7 +131,7 @@ app.post("/api/upload", upload.single("file"), async (req, res) => {
     }
 
     if (!extractedText || extractedText.trim().length < 20) {
-      return res.status(400).json({ error: "Unable to extract meaningful text from the uploaded document." });
+      return res.status(400).json({ error: "Unable to extract meaningful text from the uploaded document (minimum 20 characters required)." });
     }
 
     const apiKey = req.body.apiKey || null;
@@ -97,13 +144,12 @@ app.post("/api/upload", upload.single("file"), async (req, res) => {
       analysis
     });
   } catch (error) {
-    console.error("Upload parsing error:", error);
-    res.status(500).json({ error: "Failed to parse document: " + error.message });
+    next(error);
   }
 });
 
 // Compare Two Contract Versions
-app.post("/api/compare", async (req, res) => {
+app.post("/api/compare", aiLimiter, async (req, res, next) => {
   try {
     const { versionA, versionB, apiKey } = req.body;
     if (!versionA || !versionB) {
@@ -113,13 +159,12 @@ app.post("/api/compare", async (req, res) => {
     const comparison = await compareContracts(versionA, versionB, apiKey);
     res.json({ success: true, comparison });
   } catch (error) {
-    console.error("Compare Error:", error);
-    res.status(500).json({ error: "Failed to compare contracts: " + error.message });
+    next(error);
   }
 });
 
 // Grounded Q&A ("Talk to Your Contract")
-app.post("/api/chat", async (req, res) => {
+app.post("/api/chat", aiLimiter, async (req, res, next) => {
   try {
     const { contractText, question, conversationHistory, apiKey } = req.body;
     if (!contractText || !question) {
@@ -129,13 +174,12 @@ app.post("/api/chat", async (req, res) => {
     const chatResponse = await answerQuestion(contractText, question, conversationHistory, apiKey);
     res.json({ success: true, ...chatResponse });
   } catch (error) {
-    console.error("Chat Error:", error);
-    res.status(500).json({ error: "Failed to process chat query: " + error.message });
+    next(error);
   }
 });
 
 // Generate Attorney Prep Kit
-app.post("/api/prep-kit", async (req, res) => {
+app.post("/api/prep-kit", aiLimiter, async (req, res, next) => {
   try {
     const { contractAnalysis, userGoals, apiKey } = req.body;
     if (!contractAnalysis) {
@@ -145,8 +189,7 @@ app.post("/api/prep-kit", async (req, res) => {
     const prepKit = await generatePrepKit(contractAnalysis, userGoals, apiKey);
     res.json({ success: true, prepKit });
   } catch (error) {
-    console.error("Prep Kit Error:", error);
-    res.status(500).json({ error: "Failed to generate prep kit: " + error.message });
+    next(error);
   }
 });
 
@@ -159,6 +202,23 @@ if (fs.existsSync(clientDistPath)) {
   });
 }
 
-app.listen(PORT, () => {
-  console.log(`⚖️ LexiShield Legal AI server listening on http://localhost:${PORT}`);
+// Centralized Error-Handling Middleware (Prevents stack trace leaks)
+app.use((err, req, res, _next) => {
+  const isDev = process.env.NODE_ENV !== "production";
+  console.error("🚨 LexiShield API Error:", err.message);
+  res.status(err.status || 500).json({
+    error: err.message || "An unexpected error occurred during processing.",
+    ...(isDev && { stack: err.stack })
+  });
 });
+
+// Only listen if executed directly, not when imported in test suites
+const isDirectRun = process.argv[1] && path.resolve(process.argv[1]) === __filename;
+if (isDirectRun && process.env.NODE_ENV !== "test") {
+  app.listen(PORT, () => {
+    console.log(`⚖️ LexiShield Legal AI server listening on http://localhost:${PORT}`);
+  });
+}
+
+export { app };
+export default app;

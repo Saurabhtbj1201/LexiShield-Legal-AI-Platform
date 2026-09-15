@@ -14,8 +14,9 @@ import GavelIcon from '@mui/icons-material/Gavel';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import DescriptionIcon from '@mui/icons-material/Description';
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
 
-export default function Navbar({ onOpenApiKeyModal, apiKey, onReset, activeContractTitle }) {
+export default function Navbar({ onOpenApiKeyModal, onOpenArchitectureModal, apiKey, onReset, activeContractTitle }) {
   return (
     <AppBar
       position="sticky"
@@ -97,10 +98,31 @@ export default function Navbar({ onOpenApiKeyModal, apiKey, onReset, activeContr
                   backgroundColor: '#ffffff',
                   color: '#334155',
                   fontSize: '0.8rem',
-                  display: { xs: 'none', sm: 'inline-flex' }
+                  display: { xs: 'none', md: 'inline-flex' }
                 }}
               />
             )}
+
+            <Tooltip title="View GenAI Architecture & Evaluator Calibration Hub">
+              <Button
+                variant="contained"
+                size="small"
+                color="primary"
+                onClick={onOpenArchitectureModal}
+                startIcon={<AccountTreeIcon sx={{ fontSize: 16 }} />}
+                sx={{
+                  borderRadius: 1.5,
+                  fontSize: '0.825rem',
+                  px: 1.5,
+                  py: 0.75,
+                  background: 'linear-gradient(135deg, #4f46e5 0%, #4338ca 100%)',
+                  boxShadow: '0 2px 8px rgba(79, 70, 229, 0.25)'
+                }}
+                aria-label="Open GenAI Architecture and Evaluator Hub"
+              >
+                Evaluator Hub
+              </Button>
+            </Tooltip>
 
             <Tooltip title="Configure Gemini API Key (Offline fallback available)">
               <Button

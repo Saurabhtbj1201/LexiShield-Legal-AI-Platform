@@ -1,18 +1,22 @@
 {
   "name": "lexishield-server",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "LexiShield Legal AI Assistant Backend Server",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "dev": "node --watch index.js"
+    "dev": "node --watch index.js",
+    "test": "node --test tests/api.test.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.0",
+    "compression": "^1.7.5",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.22.3",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
     "multer": "^2.3.0",
     "pdf-parse": "^1.1.1"
   }

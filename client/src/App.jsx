@@ -21,6 +21,8 @@ import ContractComparison from './components/ContractComparison';
 import ChatGrounded from './components/ChatGrounded';
 import AttorneyPrepKit from './components/AttorneyPrepKit';
 import ApiKeyModal from './components/ApiKeyModal';
+import GenAiArchitectureModal from './components/GenAiArchitectureModal';
+import ErrorBoundary from './components/ErrorBoundary';
 
 import SecurityIcon from '@mui/icons-material/Security';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
@@ -44,6 +46,7 @@ export default function App() {
   // Gemini API Key state
   const [apiKey, setApiKey] = useState(() => localStorage.getItem('lexishield_gemini_api_key') || '');
   const [isApiKeyModalOpen, setIsApiKeyModalOpen] = useState(false);
+  const [isArchitectureModalOpen, setIsArchitectureModalOpen] = useState(false);
 
   useEffect(() => {
     fetch('/api/presets')
@@ -234,145 +237,178 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-        <DisclaimerBanner />
-        <Navbar
-          onOpenApiKeyModal={() => setIsApiKeyModalOpen(true)}
-          apiKey={apiKey}
-          onReset={handleReset}
-          activeContractTitle={activePreset?.title}
-        />
+      <ErrorBoundary>
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+          <DisclaimerBanner />
+          <Navbar
+            onOpenApiKeyModal={() => setIsApiKeyModalOpen(true)}
+            onOpenArchitectureModal={() => setIsArchitectureModalOpen(true)}
+            apiKey={apiKey}
+            onReset={handleReset}
+            activeContractTitle={activePreset?.title}
+          />
 
-        <Container maxWidth="xl" sx={{ flex: 1, py: { xs: 2.5, md: 4 } }}>
-          {errorMsg && (
-            <Alert severity="error" sx={{ mb: 3 }} onClose={() => setErrorMsg(null)}>
-              {errorMsg}
-            </Alert>
-          )}
+          <Container component="main" id="main-content" role="main" maxWidth="xl" sx={{ flex: 1, py: { xs: 2.5, md: 4 } }}>
+            {errorMsg && (
+              <Alert severity="error" sx={{ mb: 3 }} onClose={() => setErrorMsg(null)} role="alert">
+                {errorMsg}
+              </Alert>
+            )}
 
-          {!analysis && !comparisonData ? (
-            <HeroUpload
-              presets={presets}
-              onSelectPreset={handleSelectPreset}
-              onSelectComparisonPreset={handleSelectComparisonPreset}
-              onAnalyzeText={(txt) =>
-                runAnalysis(txt, { title: 'Custom Pasted Agreement', category: 'Custom Draft' })
-              }
-              onUploadFile={handleUploadFile}
-              isLoading={isLoading}
-            />
-          ) : (
-            <Box>
-              {/* Document Overview Header */}
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: { xs: 'flex-start', sm: 'center' },
-                  flexDirection: { xs: 'column', sm: 'row' },
-                  gap: 1.5,
-                  mb: 3
-                }}
-              >
-                <Box>
-                  <Chip
-                    label={activePreset?.category || analysis?.documentType || 'Contract Analysis'}
-                    size="small"
-                    sx={{
-                      fontSize: '0.7rem',
-                      fontWeight: 700,
-                      backgroundColor: '#f0fdfa',
-                      color: '#0f766e',
-                      border: '1px solid #ccfbf1',
-                      mb: 0.75
-                    }}
-                  />
-                  <Typography variant="h4" sx={{ fontWeight: 800, color: '#0f172a' }}>
-                    {activePreset?.title || analysis?.documentType || 'Document Intelligence Workspace'}
+            {!analysis && !comparisonData ? (
+              <HeroUpload
+                presets={presets}
+                onSelectPreset={handleSelectPreset}
+                onSelectComparisonPreset={handleSelectComparisonPreset}
+                onAnalyzeText={(txt) =>
+                  runAnalysis(txt, { title: 'Custom Pasted Agreement', category: 'Custom Draft' })
+                }
+                onUploadFile={handleUploadFile}
+                isLoading={isLoading}
+              />
+            ) : (
+              <Box>
+                {/* Document Overview Header */}
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: { xs: 'flex-start', sm: 'center' },
+                    flexDirection: { xs: 'column', sm: 'row' },
+                    gap: 1.5,
+                    mb: 3
+                  }}
+                >
+                  <Box>
+                    <Chip
+                      label={activePreset?.category || analysis?.documentType || 'Contract Analysis'}
+                      size="small"
+                      sx={{
+                        fontSize: '0.7rem',
+                        fontWeight: 700,
+                        backgroundColor: '#f0fdfa',
+                        color: '#0f766e',
+                        border: '1px solid #ccfbf1',
+                        mb: 0.75
+                      }}
+                    />
+                    <Typography variant="h4" component="h1" sx={{ fontWeight: 800, color: '#0f172a' }}>
+                      {activePreset?.title || analysis?.documentType || 'Document Intelligence Workspace'}
+                    </Typography>
+                  </Box>
+
+                  <Typography variant="caption" sx={{ color: '#64748b' }}>
+                    {contractText.length} characters analyzed
                   </Typography>
                 </Box>
 
-                <Typography variant="caption" sx={{ color: '#64748b' }}>
-                  {contractText.length} characters analyzed
-                </Typography>
+                {/* Workspace Tabs */}
+                <Box sx={{ borderBottom: 1, borderColor: '#e2e8f0', mb: 3 }}>
+                  <Tabs
+                    value={activeTab}
+                    onChange={(e, val) => setActiveTab(val)}
+                    variant="scrollable"
+                    scrollButtons="auto"
+                    aria-label="Legal Document Intelligence Workspace Views"
+                    sx={{
+                      '& .MuiTabs-flexContainer': {
+                        gap: { xs: 0.5, md: 1 }
+                      }
+                    }}
+                  >
+                    <Tab
+                      id="tab-0"
+                      aria-controls="tabpanel-0"
+                      icon={<SecurityIcon sx={{ fontSize: 18 }} />}
+                      iconPosition="start"
+                      label="Risk Radar & Matrix"
+                    />
+                    <Tab
+                      id="tab-1"
+                      aria-controls="tabpanel-1"
+                      icon={<MenuBookIcon sx={{ fontSize: 18 }} />}
+                      iconPosition="start"
+                      label={`Plain English Explainer (${analysis?.flaggedClauses?.length || 0})`}
+                    />
+                    <Tab
+                      id="tab-2"
+                      aria-controls="tabpanel-2"
+                      icon={<CompareArrowsIcon sx={{ fontSize: 18 }} />}
+                      iconPosition="start"
+                      label="Contract Redline & Diff"
+                    />
+                    <Tab
+                      id="tab-3"
+                      aria-controls="tabpanel-3"
+                      icon={<ChatBubbleOutlineIcon sx={{ fontSize: 18 }} />}
+                      iconPosition="start"
+                      label="Talk to Contract (Q&A)"
+                    />
+                    <Tab
+                      id="tab-4"
+                      aria-controls="tabpanel-4"
+                      icon={<BusinessCenterIcon sx={{ fontSize: 18 }} />}
+                      iconPosition="start"
+                      label="Attorney Prep Kit"
+                    />
+                  </Tabs>
+                </Box>
+
+                {/* Tab Views with accessible role=tabpanel */}
+                <Box role="tabpanel" id="tabpanel-0" aria-labelledby="tab-0" hidden={activeTab !== 0}>
+                  {activeTab === 0 && <RiskRadar analysis={analysis} />}
+                </Box>
+
+                <Box role="tabpanel" id="tabpanel-1" aria-labelledby="tab-1" hidden={activeTab !== 1}>
+                  {activeTab === 1 && <ClauseExplainer flaggedClauses={analysis?.flaggedClauses || []} />}
+                </Box>
+
+                <Box role="tabpanel" id="tabpanel-2" aria-labelledby="tab-2" hidden={activeTab !== 2}>
+                  {activeTab === 2 && (
+                    <ContractComparison
+                      comparisonData={comparisonData}
+                      onRunComparison={handleRunComparison}
+                      isLoading={isLoading}
+                    />
+                  )}
+                </Box>
+
+                <Box role="tabpanel" id="tabpanel-3" aria-labelledby="tab-3" hidden={activeTab !== 3}>
+                  {activeTab === 3 && (
+                    <ChatGrounded
+                      contractText={contractText}
+                      onAskQuestion={handleAskQuestion}
+                      isLoading={isLoading}
+                    />
+                  )}
+                </Box>
+
+                <Box role="tabpanel" id="tabpanel-4" aria-labelledby="tab-4" hidden={activeTab !== 4}>
+                  {activeTab === 4 && (
+                    <AttorneyPrepKit
+                      prepKitData={prepKitData}
+                      onGeneratePrepKit={() => {}}
+                      isLoading={isLoading}
+                    />
+                  )}
+                </Box>
               </Box>
+            )}
+          </Container>
 
-              {/* Workspace Tabs */}
-              <Box sx={{ borderBottom: 1, borderColor: '#e2e8f0', mb: 3 }}>
-                <Tabs
-                  value={activeTab}
-                  onChange={(e, val) => setActiveTab(val)}
-                  variant="scrollable"
-                  scrollButtons="auto"
-                  sx={{
-                    '& .MuiTabs-flexContainer': {
-                      gap: { xs: 0.5, md: 1 }
-                    }
-                  }}
-                >
-                  <Tab
-                    icon={<SecurityIcon sx={{ fontSize: 18 }} />}
-                    iconPosition="start"
-                    label="Risk Radar & Matrix"
-                  />
-                  <Tab
-                    icon={<MenuBookIcon sx={{ fontSize: 18 }} />}
-                    iconPosition="start"
-                    label={`Plain English Explainer (${analysis?.flaggedClauses?.length || 0})`}
-                  />
-                  <Tab
-                    icon={<CompareArrowsIcon sx={{ fontSize: 18 }} />}
-                    iconPosition="start"
-                    label="Contract Redline & Diff"
-                  />
-                  <Tab
-                    icon={<ChatBubbleOutlineIcon sx={{ fontSize: 18 }} />}
-                    iconPosition="start"
-                    label="Talk to Contract (Q&A)"
-                  />
-                  <Tab
-                    icon={<BusinessCenterIcon sx={{ fontSize: 18 }} />}
-                    iconPosition="start"
-                    label="Attorney Prep Kit"
-                  />
-                </Tabs>
-              </Box>
+          <ApiKeyModal
+            isOpen={isApiKeyModalOpen}
+            onClose={() => setIsApiKeyModalOpen(false)}
+            apiKey={apiKey}
+            onSaveApiKey={handleSaveApiKey}
+          />
 
-              {/* Tab Views */}
-              {activeTab === 0 && <RiskRadar analysis={analysis} />}
-              {activeTab === 1 && <ClauseExplainer flaggedClauses={analysis?.flaggedClauses || []} />}
-              {activeTab === 2 && (
-                <ContractComparison
-                  comparisonData={comparisonData}
-                  onRunComparison={handleRunComparison}
-                  isLoading={isLoading}
-                />
-              )}
-              {activeTab === 3 && (
-                <ChatGrounded
-                  contractText={contractText}
-                  onAskQuestion={handleAskQuestion}
-                  isLoading={isLoading}
-                />
-              )}
-              {activeTab === 4 && (
-                <AttorneyPrepKit
-                  prepKitData={prepKitData}
-                  onGeneratePrepKit={() => {}}
-                  isLoading={isLoading}
-                />
-              )}
-            </Box>
-          )}
-        </Container>
-
-        <ApiKeyModal
-          isOpen={isApiKeyModalOpen}
-          onClose={() => setIsApiKeyModalOpen(false)}
-          apiKey={apiKey}
-          onSaveApiKey={handleSaveApiKey}
-        />
-      </Box>
+          <GenAiArchitectureModal
+            open={isArchitectureModalOpen}
+            onClose={() => setIsArchitectureModalOpen(false)}
+          />
+        </Box>
+      </ErrorBoundary>
     </ThemeProvider>
   );
 }
