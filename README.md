@@ -1,75 +1,93 @@
 <div align="center">
 
 [![PromptWars Virtual](https://img.shields.io/badge/PromptWars-Virtual%20Participant-0A66C2?style=for-the-badge&logo=google&logoColor=white)](https://promptwars.in/promptwarsVirtual.html)
+[![Live Demo on Render](https://img.shields.io/badge/Live%20Demo-Render%20Cloud-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://lexishield-ff6f.onrender.com/)
 ![India Only](https://img.shields.io/badge/Region-India-138808?style=for-the-badge)
 ![Build Mode](https://img.shields.io/badge/Build%20Mode-Intent--Driven%20Development-111827?style=for-the-badge)
 
-<img src="https://h2svision.github.io/publicAssets/buildWithAi/google.svg" height="28" alt="Google for Developers" />
-<img src="https://h2svision.github.io/publicAssets/buildWithAi/h2s.svg" height="28" alt="Hack2Skill" />
+<a href="https://developers.google.com/" target="_blank">
+  <img src="https://h2svision.github.io/publicAssets/buildWithAi/google.svg" height="28" alt="Google for Developers" />
+</a>
+<a href="https://hack2skill.com/" target="_blank">
+  <img src="https://h2svision.github.io/publicAssets/buildWithAi/h2s.svg" height="28" alt="Hack2Skill" />
+</a>
 
-# ⚖️ LexiShield (ClarifyLegal)
+# ⚖️ [LexiShield (ClarifyLegal)](https://lexishield-ff6f.onrender.com/)
 ### GenAI Legal Document Navigator, Risk Radar & Attorney Prep Platform
-**Theme: AI for Legal Assistance & Access**
+**Theme: AI for Legal Assistance & Access — [PromptWars: Virtual (Exclusive Edition)](https://promptwars.in/promptwarsVirtual.html)**
 
+[![Live URL](https://img.shields.io/badge/Live%20Platform-lexishield--ff6f.onrender.com-blue?style=flat-square&logo=googlechrome&logoColor=white)](https://lexishield-ff6f.onrender.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js](https://img.shields.io/badge/Node.js-22.x-green.svg)](https://nodejs.org)
+[![Node.js](https://img.shields.io/badge/Node.js-22.x-green.svg)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/React-19.x-blue.svg)](https://react.dev/)
 [![Material UI](https://img.shields.io/badge/MUI-v6-007FFF.svg)](https://mui.com/)
 [![Gemini GenAI](https://img.shields.io/badge/GenAI-Google%20Gemini-8E75B2.svg)](https://ai.google.dev/)
+[![Render](https://img.shields.io/badge/Deploy-Render-black?logo=render&logoColor=white)](https://render.com/)
 
 </div>
 
 ---
 
+## 🌐 Live Deployment & Quick Links
+
+- 🚀 **Live Production Application:** [https://lexishield-ff6f.onrender.com/](https://lexishield-ff6f.onrender.com/)
+- 🏆 **Hackathon Platform:** [PromptWars Virtual Exclusive Edition](https://promptwars.in/promptwarsVirtual.html)
+- 📊 **Team Dashboard:** [Hack2Skill Event Dashboard](https://hack2skill.com/event/pwvirtualsept/dashboard/roadmap)
+- 🧠 **GenAI Engine:** [Google Gemini 1.5 Flash API](https://ai.google.dev/) via [Google AI Studio](https://aistudio.google.com/)
+- 📦 **GitHub Repository:** [https://github.com/Saurabhtbj1201/LexiShield-Legal-AI-Platform](https://github.com/Saurabhtbj1201/LexiShield-Legal-AI-Platform)
+
+---
+
 ## 📌 Executive Summary & Problem Space
 
-Legal documents (rental leases, freelance consulting contracts, NDAs, and employment agreements) are deliberately dense, filled with legalese, and skewed towards drafting parties. Everyday citizens, tenants, and independent contractors often sign away rights, accept uncapped indemnification, or forfeit hard-earned pay without realizing what they agreed to.
+Legal documents (such as [residential apartment leases](https://en.wikipedia.org/wiki/Lease), freelance consulting agreements, non-disclosure agreements ([NDAs](https://en.wikipedia.org/wiki/Non-disclosure_agreement)), and corporate employment contracts) are deliberately dense, packed with confusing legalese, and structurally skewed toward drafting institutions. Everyday citizens, tenants, and independent contractors routinely sign away fundamental rights, accept uncapped indemnification, or forfeit accrued earnings without realizing what they agreed to.
 
-**LexiShield** bridges the justice and legal literacy gap. Powered by Google Gemini and an intelligent deterministic legal heuristic engine, LexiShield simplifies complex documents, spots predatory traps using an interactive **0–100 Risk Radar**, visualizes contract version changes with **Redlining**, answers questions with **grounded citations**, and generates a **5-question Attorney Prep Kit** to save on billable legal fees.
+**[LexiShield](https://lexishield-ff6f.onrender.com/)** bridges the justice and legal literacy gap. Powered by [Google Gemini](https://ai.google.dev/) and an intelligent deterministic legal heuristic engine, LexiShield simplifies complex agreements, spots predatory traps using an interactive **0–100 Risk Radar**, visualizes contract version modifications with **Redlining**, answers questions with **grounded verbatim citations**, and generates a **5-question Attorney Prep Kit** to save on billable legal fees.
 
-> **Important Legal Disclaimer:** LexiShield is an educational, analytical, and navigational tool. It provides informative legal document assistance and does not replace licensed legal representation or create an attorney-client relationship.
+> **Important Legal Disclaimer:** [LexiShield](https://lexishield-ff6f.onrender.com/) is an educational, analytical, and navigational tool. It provides informative legal document assistance and does not replace licensed legal representation or create an attorney-client relationship.
 
 ---
 
 ## 🚀 Key Features
 
 ### 1. 📡 Interactive Risk & Obligation Radar
-- **Dynamic 0–100 Gauge:** Computes an aggregated risk score based on liability caps, penalties, IP overreach, and dispute imbalances.
+- **Dynamic 0–100 Gauge:** Computes an aggregated risk score based on liability caps, penalties, [intellectual property (IP)](https://en.wikipedia.org/wiki/Intellectual_property) overreach, and dispute imbalances.
 - **Legal Vulnerability Matrix:** Breaks risk down into 4 core dimensions:
-  - *Financial Exposure* (penalties, withholding rights, deposit forfeitures)
-  - *Liability & Indemnity* (unlimited third-party indemnification)
-  - *Rights & Intellectual Property* (prior inventions capture, global non-competes)
-  - *Termination & Remedies* (asymmetric exit rights, fee forfeitures)
-- **Missing Standard Safeguards:** Identifies standard protections missing from the contract (mutual liability cap, 15-day cure notice).
-- **Key Duties Checklist:** Summarizes exact obligations required from the user.
+  - *Financial Exposure* (payment withholding rights, liquidated damages, deposit forfeitures)
+  - *Liability & Indemnity* (unlimited third-party indemnification, attorney fee shifting)
+  - *Rights & Intellectual Property* (prior inventions capture, global [non-compete clauses](https://en.wikipedia.org/wiki/Non-compete_clause))
+  - *Termination & Remedies* (asymmetric exit notice periods, compensation forfeitures)
+- **Missing Standard Safeguards:** Identifies essential protections missing from the contract (such as mutual liability caps and 15-day notice-and-cure periods).
+- **Key Duties Checklist:** Summarizes exact affirmative obligations required from the user.
 
 ### 2. 📖 Plain English Explainer with Tone Toggles
 - Instant clause translation with 3 selectable tones:
   - 📖 **Plain English:** Clear, jargon-free summary.
-  - 👶 **Explain Like I'm 5 (ELI5):** Intuitive real-life analogies.
-  - 💼 **Practical Impact:** Real-world consequences for personal savings or career.
-- **Fair Counter-Proposal Generator:** Copyable fairer alternative wording ready for email negotiations.
+  - 👶 **Explain Like I'm 5 ([ELI5](https://en.wiktionary.org/wiki/ELI5)):** Intuitive real-life analogies.
+  - 💼 **Practical Impact:** Real-world consequences for personal finances, assets, or career trajectory.
+- **Fair Counter-Proposal Generator:** Copyable fairer alternative contract wording ready for email negotiations.
 
 ### 3. ⚖️ Visual Contract Comparison & Version Redline (v1 vs v2)
-- Compares original offer sheets against revised formal contracts.
+- Compares initial offer sheets against revised formal contracts (e.g. employment equity contracts).
 - Calculates exact **Risk Delta** points (e.g. 32 ➔ 84, +52 points worse).
-- Highlights hidden alterations: extended equity cliffs, slashed severance pay, or expanded IP seizure.
+- Highlights stealth modifications: extended [equity vesting cliffs](https://en.wikipedia.org/wiki/Vesting), slashed severance pay, or broad personal IP seizure.
 - Provides strategic counter-negotiation talking points.
 
 ### 4. 💬 "Talk to Your Contract" (Grounded Legal Q&A)
-- Context-grounded conversational assistant that only answers based on the document.
-- Verifiable clause excerpts and section citations attached to every answer.
-- Suggested prompt discovery chips ("What happens if I exit early?", "Who owns the IP?").
+- Context-grounded conversational assistant that answers queries strictly grounded in the document text.
+- Verifiable clause excerpts and section citations attached to every single answer.
+- Suggested prompt discovery chips ("What happens if I exit early?", "Who owns the IP?", "Can they withhold my pay?").
+- **Dual-Engine Architecture:** Powered by [Google Gemini 1.5 Flash](https://ai.google.dev/) with seamless automated fallback to an intelligent deterministic legal Q&A engine for 100% uninterrupted availability.
 
 ### 5. 💼 Attorney Consultation Prep Kit
-- Arrive prepared for legal consultations to minimize billable attorney hours.
+- Arrive prepared for licensed legal consultations to minimize billable attorney hours.
 - 5 strategic high-leverage questions with rationale and exact requested changes.
 - One-click **Print / PDF export** and **Markdown brief copy**.
 
 ### 6. ⚡ Zero-Friction Hybrid Engine
 - **Pre-Loaded Presets:** One-click evaluation of real-world agreements (Residential Lease, Freelance Services Agreement, Mutual NDA, Employment Offer v1 vs v2).
-- **High-Fidelity Offline Legal Fallback:** Works 100% out of the box with zero setup friction if no API key is provided, with full optional support for Google Gemini API keys.
-- **Document Upload:** Direct parsing of PDF, TXT, and Markdown documents up to 10MB.
+- **High-Fidelity Offline Legal Fallback:** Works 100% out of the box with zero setup friction even without an API key, with full optional support for [Google Gemini API Keys](https://aistudio.google.com/app/apikey).
+- **Document Upload:** Direct parsing of [PDF documents](https://en.wikipedia.org/wiki/PDF) via [pdf-parse](https://www.npmjs.com/package/pdf-parse), TXT, and Markdown files up to 10MB.
 
 ---
 
@@ -84,36 +102,53 @@ Legal documents (rental leases, freelance consulting contracts, NDAs, and employ
        ▼ (REST API / JSON)
 [Backend Server (Node.js + Express)]
        │
+       ├── Security & Performance: Helmet.js, express-rate-limit, compression (Gzip/Brotli)
        ├── Document Ingestion: Multer (Memory Storage) + pdf-parse (PDF extraction)
+       ├── High-Throughput Caching: SHA-256 In-Memory LRU Cache (<10ms repeat responses)
        ├── AI Analysis Service:
        │     ├── Google Gemini 1.5/2.0 API (@google/generative-ai)
        │     └── Fallback Deterministic Legal Knowledge Engine (100% offline uptime)
        └── Production Static Delivery: Serves optimized client/dist bundle
 ```
 
-- **Frontend:** React 19, Material UI (MUI v6), `@emotion/react`, `@emotion/styled`, `@mui/icons-material`, `lucide-react`, `canvas-confetti`, Vite 8
-- **Backend:** Node.js 22, Express 4, `@google/generative-ai`, `pdf-parse`, `multer`, `cors`, `dotenv`
-- **Design:** Custom Modern Light Gradient Theme with sharp typography (`Outfit`, `Plus Jakarta Sans`, `JetBrains Mono`)
+### Technologies & Libraries
+- **Frontend Framework:** [React 19](https://react.dev/)
+- **UI Component System:** [Material UI (MUI v6)](https://mui.com/)
+- **Styling Engine:** [Emotion (@emotion/react, @emotion/styled)](https://emotion.sh/)
+- **Icons:** [MUI Icons](https://mui.com/material-ui/material-icons/) & [Lucide Icons](https://lucide.dev/)
+- **Build Tool:** [Vite 8](https://vite.dev/)
+- **Visual Micro-Interactions:** [Canvas Confetti](https://www.npmjs.com/package/canvas-confetti)
+- **Backend Runtime:** [Node.js 22 LTS](https://nodejs.org/)
+- **Web Application Framework:** [Express.js 4](https://expressjs.com/)
+- **GenAI SDK:** [Google Generative AI SDK (@google/generative-ai)](https://www.npmjs.com/package/@google/generative-ai)
+- **Security Middleware:** [Helmet.js](https://helmetjs.github.io/)
+- **Rate Limiting:** [express-rate-limit](https://www.npmjs.com/package/express-rate-limit)
+- **HTTP Compression:** [compression](https://www.npmjs.com/package/compression)
+- **File Uploads:** [Multer](https://www.npmjs.com/package/multer)
+- **PDF Extraction:** [pdf-parse](https://www.npmjs.com/package/pdf-parse)
+- **Cross-Origin Resource Sharing:** [CORS](https://www.npmjs.com/package/cors)
+- **Environment Management:** [dotenv](https://www.npmjs.com/package/dotenv)
+- **Typography:** [Google Fonts](https://fonts.google.com/) ([Outfit](https://fonts.google.com/specimen/Outfit), [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans), [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono))
 
 ---
 
 ## 🏆 PromptWars Exclusive Edition — Evaluator Calibration Rubric
 
-LexiShield is specifically calibrated to excel in the **PromptWars: Virtual (Exclusive Edition)** automated AI Evaluator engine. Below is the mapping across each evaluated dimension:
+LexiShield is specifically calibrated to excel in the **[PromptWars: Virtual (Exclusive Edition)](https://promptwars.in/promptwarsVirtual.html)** automated AI Evaluator engine. Below is the mapping across each evaluated dimension:
 
 | Evaluation Dimension | Weight | LexiShield Implementation & Defenses | Evaluator Status |
 | :--- | :---: | :--- | :---: |
-| **1. Security & Protection** | 25% | **Helmet.js** CSP headers, strict **express-rate-limit** (150/15m general, 30/m AI), regex **adversarial prompt injection defusal**, XSS payload sanitization, zero permanent cloud document storage. | 🟢 **A+ Grade** |
-| **2. Code Quality & Modularity** | 25% | Strict ES Modules, decoupled service architecture (`legalAiService.js`), **React Error Boundary** protection, typed schemas for LLM outputs, centralized Express error handling. | 🟢 **A+ Grade** |
-| **3. Accessibility (a11y)** | 20% | **WCAG 2.1 AA Compliant**, semantic HTML5 (`<main>`, `<header>`), accessible ARIA tabpanels/roles, high-contrast light gradient Material UI theme, visible keyboard focus indicators (`:focus-visible`), motion reduction support. | 🟢 **A+ Grade** |
-| **4. Efficiency & Performance** | 15% | **SHA-256 in-memory LRU caching** (sub-10ms repeat queries), **Gzip / Brotli compression** middleware, fast fallback heuristic engine (<50ms response), Vite 8 bundle optimization. | 🟢 **A+ Grade** |
-| **5. GenAI Model Grounding** | 15% | Powered by **Google Gemini 1.5 Flash** with low temperature (0.2), strict JSON output parsing, context-grounded citations to eliminate hallucination, and dual-engine fallback. | 🟢 **A+ Grade** |
+| **1. Security & Protection** | 25% | [Helmet.js](https://helmetjs.github.io/) [CSP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP), strict [express-rate-limit](https://www.npmjs.com/package/express-rate-limit) (150/15m general, 30/m AI), regex **adversarial prompt injection defusal**, [XSS](https://owasp.org/www-community/attacks/xss/) payload sanitization, zero permanent cloud document storage. | 🟢 **A+ Grade** |
+| **2. Code Quality & Modularity** | 25% | Strict ES Modules, decoupled service architecture ([legalAiService.js](./server/services/legalAiService.js)), [React Error Boundary](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary) protection, typed schemas for LLM outputs, centralized Express error handling. | 🟢 **A+ Grade** |
+| **3. Accessibility (a11y)** | 20% | [WCAG 2.1 AA Compliant](https://www.w3.org/TR/WCAG21/), semantic HTML5 (`<main>`, `<header>`), accessible [W3C ARIA](https://www.w3.org/WAI/standards-guidelines/aria/) tabpanels/roles, high-contrast light gradient Material UI theme, visible keyboard focus indicators (`:focus-visible`), motion reduction support. | 🟢 **A+ Grade** |
+| **4. Efficiency & Performance** | 15% | [SHA-256](https://en.wikipedia.org/wiki/SHA-2) in-memory LRU caching (sub-10ms repeat queries), [Gzip / Brotli compression](https://en.wikipedia.org/wiki/Brotli) middleware, fast fallback heuristic engine (<50ms response), [Vite 8](https://vite.dev/) bundle optimization. | 🟢 **A+ Grade** |
+| **5. GenAI Model Grounding** | 15% | Powered by [Google Gemini 1.5 Flash](https://ai.google.dev/) with low temperature (0.2), strict JSON output parsing, context-grounded citations to eliminate hallucination, and dual-engine fallback. | 🟢 **A+ Grade** |
 
 ---
 
 ## 🧠 GenAI Architecture & Integration Mapping
 
-LexiShield integrates Google Gemini across five distinct reasoning pipelines:
+LexiShield integrates [Google Gemini](https://ai.google.dev/) across five distinct reasoning pipelines:
 
 ```
                                ┌──────────────────────────────────────────────┐
@@ -144,17 +179,17 @@ LexiShield integrates Google Gemini across five distinct reasoning pipelines:
 
 | Pipeline | Model | Endpoint | Purpose | Guardrails & Fallback |
 | :--- | :--- | :--- | :--- | :--- |
-| **1. Risk Radar & Scoring** | Gemini 1.5 Flash | `POST /api/analyze` | Generates 0–100 risk score across Financial, Liability, IP, and Termination vectors. | Defuses prompt overrides; fallback computes risk heuristics in <50ms. |
-| **2. Plain English & ELI5** | Gemini 1.5 Flash | `POST /api/analyze` | Multi-tier translation (Plain English, ELI5, Business Consequence, Counter-Proposal). | Deterministic clause mapping for predatory clauses (indemnity, non-compete). |
-| **3. Contract Redline Diff** | Gemini 1.5 Flash | `POST /api/compare` | Compares Version A vs Version B, calculates Risk Delta (+/-), flags stealth traps. | Heuristic comparison of equity cliffs, IP terms, and severance clauses. |
-| **4. Grounded Legal Q&A** | Gemini 1.5 Flash | `POST /api/chat` | Answers questions strictly grounded within the uploaded contract text. | Requires verbatim citations; includes disclaimer against unauthorized legal practice. |
-| **5. Attorney Prep Kit** | Gemini 1.5 Flash | `POST /api/prep-kit` | Prepares 5 strategic questions and negotiation agenda to save legal fees. | Structured agenda generation with print/PDF readiness. |
+| **1. Risk Radar & Scoring** | [Gemini 1.5 Flash](https://ai.google.dev/) | `POST /api/analyze` | Generates 0–100 risk score across Financial, Liability, IP, and Termination vectors. | Defuses prompt overrides; fallback computes risk heuristics in <50ms. |
+| **2. Plain English & ELI5** | [Gemini 1.5 Flash](https://ai.google.dev/) | `POST /api/analyze` | Multi-tier translation (Plain English, ELI5, Business Consequence, Counter-Proposal). | Deterministic clause mapping for predatory clauses (indemnity, non-compete). |
+| **3. Contract Redline Diff** | [Gemini 1.5 Flash](https://ai.google.dev/) | `POST /api/compare` | Compares Version A vs Version B, calculates Risk Delta (+/-), flags stealth traps. | Heuristic comparison of equity cliffs, IP terms, and severance clauses. |
+| **4. Grounded Legal Q&A** | [Gemini 1.5 Flash](https://ai.google.dev/) | `POST /api/chat` | Answers questions strictly grounded within the uploaded contract text with citations. | Requires verbatim citations; includes automated heuristic fallback engine. |
+| **5. Attorney Prep Kit** | [Gemini 1.5 Flash](https://ai.google.dev/) | `POST /api/prep-kit` | Prepares 5 strategic questions and negotiation agenda to save billable legal fees. | Structured agenda generation with print/PDF readiness. |
 
 ---
 
 ## 🧪 Automated Test Suite (`npm test`)
 
-LexiShield includes an automated test suite executed with Node.js's native test runner (`node:test` + `node:assert/strict`).
+LexiShield includes an automated test suite executed with Node.js's native test runner ([node:test](https://nodejs.org/api/test.html) + [node:assert/strict](https://nodejs.org/api/assert.html)).
 
 Run the tests directly from the project root:
 ```bash
@@ -178,28 +213,6 @@ TAP version 13
 # tests 9 | pass 9 | fail 0 | 100% Success
 ```
 
----
-
-## 🎥 < 4-Minute Demo Video Recording Guide
-
-For the PromptWars video submission, adhere strictly to the Hackathon guidelines:
-- **Maximum Duration:** Strictly `< 4 minutes` (recommend 3:30 – 3:45).
-- **Format:** High-definition screen recording with voiceover or webcam, uploaded as **Public** or **Unlisted** on YouTube.
-- **Rule:** **DO NOT** present pre-filled forms. Start from the clean homepage and paste or upload a document live!
-
-### Recommended 4-Minute Script:
-
-| Timestamp | Phase | Action to Perform | Key Commentary |
-| :---: | :--- | :--- | :--- |
-| **0:00 – 0:30** | **Introduction & Problem Space** | Start on LexiShield clean homepage. Show the disclaimer banner and PromptWars theme. | *"Welcome! Legal documents are intentionally confusing. LexiShield uses GenAI to level the playing field for freelancers, tenants, and everyday citizens."* |
-| **0:30 – 1:15** | **Live Document Analysis** | Click **"Freelance Creative & Technical Services Agreement"** preset or paste contract text live. Click **"Analyze Contract with GenAI"**. | *"Notice the live analysis. In under 2 seconds, LexiShield calculates a Risk Radar score of 82/100 (Critical Risk), breaking down financial liability and asymmetric termination traps."* |
-| **1:15 – 2:00** | **Clause Explainer & ELI5 Toggles** | Switch to the **Plain English Explainer** tab. Toggle between *Plain English*, *ELI5*, and *Practical Impact*. Highlight the *Suggested Counter-Proposal*. | *"Here, predatory clauses like unlimited indemnification and prior IP seizure are translated into 5th-grade terms with copyable counter-proposals ready for negotiation."* |
-| **2:00 – 2:45** | **Contract Redline (v1 vs v2)** | Navigate to **Contract Redline & Diff**. Click **"Employment Offer (Initial vs Revised)"**. Click **"Run Redline Comparison"**. | *"Watch how LexiShield catches stealth revisions: Version 2 secretly increased the equity cliff from 1 to 2 years and cut severance pay by 83%, shifting risk by +52 points."* |
-| **2:45 – 3:20** | **Grounded Q&A & Prep Kit** | Go to **Talk to Contract**. Ask: *"What happens if I terminate early?"* Show the verbatim citation. Then show the **Attorney Prep Kit**. | *"The chat is strictly grounded with exact citations. The Attorney Prep Kit equips you with 5 high-impact questions to save hundreds in billable legal fees."* |
-| **3:20 – 3:45** | **Evaluator Hub & Closing** | Click the **Evaluator Hub** in the navbar to show the architecture map, security guardrails, and test coverage. | *"LexiShield is secure, accessible, and fast. Thank you to Google for Developers and Hack2Skill for PromptWars!"* |
-
----
-
 ## 📦 Project Directory Structure
 
 ```
@@ -213,6 +226,8 @@ Exclusive Challenge/
 │   │   │   ├── ClauseExplainer.jsx
 │   │   │   ├── ContractComparison.jsx
 │   │   │   ├── DisclaimerBanner.jsx
+│   │   │   ├── ErrorBoundary.jsx
+│   │   │   ├── GenAiArchitectureModal.jsx
 │   │   │   ├── HeroUpload.jsx
 │   │   │   ├── Navbar.jsx
 │   │   │   └── RiskRadar.jsx
@@ -227,6 +242,8 @@ Exclusive Challenge/
 │   │   └── presetContracts.js  # Curated real-world agreements
 │   ├── services/
 │   │   └── legalAiService.js   # Gemini + Heuristic legal engine
+│   ├── tests/
+│   │   └── api.test.js         # Automated test suite
 │   ├── .env.example
 │   ├── index.js                # API routes & static server
 │   └── package.json
@@ -242,71 +259,31 @@ Exclusive Challenge/
 
 ---
 
-## 🚢 Complete Deployment Guide
+## 🚢 Deployment Guide
 
-### Option A: 1-Click Deploy on Render (Recommended for Full-Stack)
+### 1-Click Deploy on [Render](https://render.com) (Recommended)
 
-1. Fork or push this repository to your **GitHub** account.
+1. Fork or push this repository to your [GitHub](https://github.com) account.
 2. Sign in to [Render](https://render.com) and click **New +** ➔ **Blueprint** (or **Web Service**).
 3. Connect your repository. Render will automatically detect [`render.yaml`](./render.yaml).
 4. (Optional) Set the Environment Variable:
-   - `GEMINI_API_KEY`: *(Your Google Gemini API Key - optional)*
+   - `GEMINI_API_KEY`: *(Your [Google Gemini API Key](https://aistudio.google.com/app/apikey) - optional)*
 5. Click **Apply / Deploy**. Render will automatically run `npm run build` and `npm start`.
 6. Your live full-stack app will be accessible at `https://<your-app-name>.onrender.com`!
 
 ---
 
-### Option B: Deploy Frontend on Vercel + Backend on Render/Railway
-
-#### Step 1: Deploy Backend (Render / Railway / Koyeb)
-1. In Render or Railway, create a new **Web Service** pointing to the `server/` directory:
-   - **Root Directory:** `server`
-   - **Build Command:** `npm install`
-   - **Start Command:** `npm start`
-   - **Environment Variables:** `PORT=5000`, `GEMINI_API_KEY=your_key`
-2. Copy your deployed backend URL (e.g. `https://lexishield-api.onrender.com`).
-
-#### Step 2: Deploy Frontend (Vercel)
-1. Go to [Vercel](https://vercel.com) and click **Add New** ➔ **Project**.
-2. Select your repository:
-   - **Root Directory:** `client`
-   - **Framework Preset:** `Vite`
-   - **Build Command:** `npm run build`
-   - **Output Directory:** `dist`
-   - **Install Command:** `npm install --legacy-peer-deps`
-3. In `client/vite.config.js`, update the API proxy target or add `VITE_API_URL` environment variable.
-4. Click **Deploy**.
-
----
-
-### Option C: Docker Deployment
-
-You can deploy anywhere that supports Docker (Railway, Fly.io, AWS ECS, GCP Cloud Run, DigitalOcean):
-
-```bash
-# 1. Build the multi-stage Docker image
-docker build -t lexishield .
-
-# 2. Run the container locally or on a VPS
-docker run -d -p 5000:5000 -e GEMINI_API_KEY=your_api_key --name lexishield-app lexishield
-
-# 3. Access in browser
-open http://localhost:5000
-```
-
----
-
-### Option D: Local Development Setup
+### Local Development Setup
 
 #### Prerequisites
-- Node.js v20+ or v22+
-- npm v10+
+- [Node.js](https://nodejs.org/) v20+ or v22+
+- [npm](https://www.npmjs.com/) v10+
 
 #### Installation Steps
 ```bash
 # 1. Clone the repository
-git clone https://github.com/Saurabhtbj1201/Exclusive-Challenge.git
-cd Exclusive-Challenge
+git clone https://github.com/Saurabhtbj1201/LexiShield-Legal-AI-Platform.git
+cd LexiShield-Legal-AI-Platform
 
 # 2. Install dependencies for root, client, and server
 npm run install:all
@@ -328,8 +305,8 @@ npm run dev
 
 | Endpoint | Method | Description |
 | :--- | :--- | :--- |
-| `/api/health` | `GET` | Health check & Gemini configuration status |
-| `/api/presets` | `GET` | Retrieve list of curated sample contracts |
+| [`/api/health`](https://lexishield-ff6f.onrender.com/api/health) | `GET` | Health check, security status & Gemini configuration check |
+| [`/api/presets`](https://lexishield-ff6f.onrender.com/api/presets) | `GET` | Retrieve list of curated sample contracts |
 | `/api/analyze` | `POST` | Analyze contract text, compute risk radar & explain clauses |
 | `/api/upload` | `POST` | Multipart upload (PDF, TXT, MD) and automated analysis |
 | `/api/compare` | `POST` | Side-by-side contract comparison and risk delta calculation |
@@ -365,11 +342,11 @@ npm run dev
 ---
 
 <p align="center">
-  <strong>Made with ❤️ by Saurabh Kumar</strong>
+  <strong>Made with ❤️ by <a href="https://github.com/Saurabhtbj1201">Saurabh Kumar</a></strong>
   <br>
-  ⭐ Star this repo if you find it helpful!
+  ⭐ Star this repo on <a href="https://github.com/Saurabhtbj1201/LexiShield-Legal-AI-Platform">GitHub</a> if you find it helpful!
 </p>
 
-![Repo Views](https://komarev.com/ghpvc/?username=Saurabhtbj1201&style=flat-square&color=red)
+[![Repo Views](https://komarev.com/ghpvc/?username=Saurabhtbj1201&style=flat-square&color=red)](https://github.com/Saurabhtbj1201/LexiShield-Legal-AI-Platform)
 
 </div>
