@@ -321,7 +321,7 @@ npm run dev
 ### © Made with ❤️ by Saurabh Kumar. All Rights Reserved 2026
 
 <a href="https://github.com/Saurabhtbj1201">
-  <img src="https://github.com/Saurabhtbj1201.png" width="100" style="border-radius: 50%; border: 3px solid #0366d6;" alt="Saurabh Profile"/>
+  <img src="https://www.gu-saurabh.tech/portfolio.png" width="500" alt="Saurabh Profile"/>
 </a>
 
 ### [Saurabh Kumar](https://github.com/Saurabhtbj1201)
