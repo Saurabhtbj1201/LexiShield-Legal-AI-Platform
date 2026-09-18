@@ -112,7 +112,12 @@ export default function ChatGrounded({ contractText, onAskQuestion, isLoading })
       </Box>
 
       {/* Messages Scroll View */}
-      <Box sx={{ flex: 1, overflowY: 'auto', p: 2.5, display: 'flex', flexDirection: 'column', gap: 2, backgroundColor: '#ffffff' }}>
+      <Box
+        role="log"
+        aria-live="polite"
+        aria-atomic="false"
+        sx={{ flex: 1, overflowY: 'auto', p: 2.5, display: 'flex', flexDirection: 'column', gap: 2, backgroundColor: '#ffffff' }}
+      >
         {messages.map((msg, idx) => (
           <Box
             key={idx}
@@ -254,11 +259,13 @@ export default function ChatGrounded({ contractText, onAskQuestion, isLoading })
           value={inputVal}
           onChange={(e) => setInputVal(e.target.value)}
           disabled={isLoading}
+          inputProps={{ 'aria-label': 'Ask a question about this contract' }}
           sx={{ backgroundColor: '#ffffff' }}
         />
         <IconButton
           type="submit"
           color="primary"
+          aria-label="Send query to contract assistant"
           disabled={!inputVal.trim() || isLoading}
           sx={{
             backgroundColor: '#4f46e5',

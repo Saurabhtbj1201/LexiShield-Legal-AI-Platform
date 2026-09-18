@@ -12,6 +12,7 @@
     "build": "npm run build:server && npm run build:client",
     "start": "cd server && npm start",
     "test": "npm --prefix server test",
+    "test:coverage": "npm --prefix server run test:coverage",
     "install:all": "npm install && cd server && npm install && cd ../client && npm install --legacy-peer-deps"
   },
   "devDependencies": {

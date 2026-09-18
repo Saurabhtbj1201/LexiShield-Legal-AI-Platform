@@ -240,13 +240,22 @@ export default function HeroUpload({
         {tabIndex === 1 && (
           <Card sx={{ p: 4, textAlign: 'center', border: '1px solid #e2e8f0' }}>
             <Box
+              role="button"
+              tabIndex={0}
+              aria-label="Upload document dropzone: Click or press Enter to choose a file"
+              onClick={() => fileInputRef.current?.click()}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  fileInputRef.current?.click();
+                }
+              }}
               onDragOver={(e) => {
                 e.preventDefault();
                 setIsDragOver(true);
               }}
               onDragLeave={() => setIsDragOver(false)}
               onDrop={handleDrop}
-              onClick={() => fileInputRef.current?.click()}
               sx={{
                 border: '2px dashed',
                 borderColor: isDragOver ? '#4f46e5' : '#cbd5e1',
@@ -265,6 +274,7 @@ export default function HeroUpload({
               <input
                 ref={fileInputRef}
                 type="file"
+                aria-label="Upload legal document file in PDF, TXT, or Markdown format"
                 accept=".pdf,.txt,.md,.doc,.docx"
                 style={{ display: 'none' }}
                 onChange={handleFileChange}
@@ -295,7 +305,11 @@ export default function HeroUpload({
             </Box>
 
             {isLoading && (
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5, mt: 3, color: '#4f46e5' }}>
+              <Box
+                role="status"
+                aria-live="polite"
+                sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5, mt: 3, color: '#4f46e5' }}
+              >
                 <CircularProgress size={20} color="inherit" />
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>
                   Extracting document text and computing risk radar...
@@ -313,6 +327,8 @@ export default function HeroUpload({
                 fullWidth
                 multiline
                 rows={8}
+                id="pasted-contract-input"
+                inputProps={{ 'aria-label': 'Paste contract text or legal clauses here' }}
                 placeholder="Paste the contract text or suspicious clauses here (e.g. non-compete, indemnification, house rules)..."
                 value={pastedText}
                 onChange={(e) => setPastedText(e.target.value)}

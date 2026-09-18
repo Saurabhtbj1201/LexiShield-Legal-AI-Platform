@@ -209,6 +209,7 @@ export default function ClauseExplainer({ flaggedClauses = [] }) {
                       size="small"
                       onClick={() => handleCopy(`snippet-${clause.id}`, clause.originalText)}
                       sx={{ color: '#64748b' }}
+                      aria-label={`Copy excerpt for ${clause.clauseTitle}`}
                     >
                       {copiedId === `snippet-${clause.id}` ? (
                         <CheckIcon sx={{ fontSize: 15, color: '#059669' }} />
@@ -238,6 +239,7 @@ export default function ClauseExplainer({ flaggedClauses = [] }) {
                   exclusive
                   onChange={(e, val) => setTone(clause.id, val)}
                   size="small"
+                  aria-label={`Explanation style for ${clause.clauseTitle}`}
                   sx={{
                     backgroundColor: '#f1f5f9',
                     '& .MuiToggleButton-root': {
@@ -255,14 +257,20 @@ export default function ClauseExplainer({ flaggedClauses = [] }) {
                     }
                   }}
                 >
-                  <ToggleButton value="plain">📖 Plain English</ToggleButton>
-                  <ToggleButton value="eli5">👶 Explain Like I'm 5</ToggleButton>
-                  <ToggleButton value="impact">💼 Practical Impact</ToggleButton>
+                  <ToggleButton value="plain" aria-controls={`explainer-body-${clause.id}`} aria-label="Plain English explanation">
+                    📖 Plain English
+                  </ToggleButton>
+                  <ToggleButton value="eli5" aria-controls={`explainer-body-${clause.id}`} aria-label="Explain Like I am 5 years old">
+                    👶 Explain Like I'm 5
+                  </ToggleButton>
+                  <ToggleButton value="impact" aria-controls={`explainer-body-${clause.id}`} aria-label="Practical business and career impact">
+                    💼 Practical Impact
+                  </ToggleButton>
                 </ToggleButtonGroup>
               </Box>
 
               {/* Explainer Body */}
-              <Box sx={{ mb: 2.5 }}>
+              <Box id={`explainer-body-${clause.id}`} role="region" aria-live="polite" sx={{ mb: 2.5 }}>
                 {currentTone === 'plain' && (
                   <Typography variant="body2" sx={{ color: '#1e293b', fontSize: '0.925rem', lineHeight: 1.65 }}>
                     {clause.plainEnglishExplainer}

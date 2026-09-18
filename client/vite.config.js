@@ -12,5 +12,23 @@ export default defineConfig({
         changeOrigin: true
       }
     }
+  },
+  build: {
+    chunkSizeWarningLimit: 800,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('@mui') || id.includes('@emotion')) {
+              return 'vendor-mui';
+            }
+            if (id.includes('lucide-react') || id.includes('canvas-confetti')) {
+              return 'vendor-utils';
+            }
+            return 'vendor-core';
+          }
+        }
+      }
+    }
   }
 })

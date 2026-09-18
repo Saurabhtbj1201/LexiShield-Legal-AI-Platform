@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, Suspense, lazy } from 'react';
 import {
   ThemeProvider,
   CssBaseline,
@@ -8,7 +8,8 @@ import {
   Tab,
   Typography,
   Alert,
-  Chip
+  Chip,
+  CircularProgress
 } from '@mui/material';
 import theme from './theme';
 
@@ -17,12 +18,14 @@ import DisclaimerBanner from './components/DisclaimerBanner';
 import HeroUpload from './components/HeroUpload';
 import RiskRadar from './components/RiskRadar';
 import ClauseExplainer from './components/ClauseExplainer';
-import ContractComparison from './components/ContractComparison';
-import ChatGrounded from './components/ChatGrounded';
-import AttorneyPrepKit from './components/AttorneyPrepKit';
 import ApiKeyModal from './components/ApiKeyModal';
-import GenAiArchitectureModal from './components/GenAiArchitectureModal';
 import ErrorBoundary from './components/ErrorBoundary';
+
+// Lazy load non-critical workspace tabs for optimal bundle efficiency and instant initial load
+const ContractComparison = lazy(() => import('./components/ContractComparison'));
+const ChatGrounded = lazy(() => import('./components/ChatGrounded'));
+const AttorneyPrepKit = lazy(() => import('./components/AttorneyPrepKit'));
+const GenAiArchitectureModal = lazy(() => import('./components/GenAiArchitectureModal'));
 
 import SecurityIcon from '@mui/icons-material/Security';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
@@ -59,16 +62,16 @@ export default function App() {
       .catch((err) => console.warn('Could not fetch presets:', err));
   }, []);
 
-  const handleSaveApiKey = (key) => {
+  const handleSaveApiKey = useCallback((key) => {
     setApiKey(key);
     if (key) {
       localStorage.setItem('lexishield_gemini_api_key', key);
     } else {
       localStorage.removeItem('lexishield_gemini_api_key');
     }
-  };
+  }, []);
 
-  const runAnalysis = async (text, presetMeta = null) => {
+  const runAnalysis = useCallback(async (text, presetMeta = null) => {
     setIsLoading(true);
     setErrorMsg(null);
     try {
@@ -104,13 +107,13 @@ export default function App() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [apiKey]);
 
-  const handleSelectPreset = (preset) => {
+  const handleSelectPreset = useCallback((preset) => {
     runAnalysis(preset.content, preset);
-  };
+  }, [runAnalysis]);
 
-  const handleSelectComparisonPreset = async (preset) => {
+  const handleSelectComparisonPreset = useCallback(async (preset) => {
     setIsLoading(true);
     setErrorMsg(null);
     setActivePreset(preset);
@@ -141,30 +144,31 @@ export default function App() {
         setComparisonData(compareData.comparison);
       }
 
-      setActiveTab(2);
-      confetti({ particleCount: 35, spread: 60, origin: { y: 0.6 } });
+      setActiveTab(2); // Jump directly to comparison tab
+      confetti({ particleCount: 40, spread: 60, origin: { y: 0.6 } });
     } catch (err) {
       setErrorMsg(err.message);
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [apiKey]);
 
-  const handleUploadFile = async (file) => {
+  const handleUploadFile = useCallback(async (file) => {
     setIsLoading(true);
     setErrorMsg(null);
-    try {
-      const formData = new FormData();
-      formData.append('file', file);
-      if (apiKey) formData.append('apiKey', apiKey);
 
+    const formData = new FormData();
+    formData.append('file', file);
+    if (apiKey) formData.append('apiKey', apiKey);
+
+    try {
       const res = await fetch('/api/upload', {
         method: 'POST',
         body: formData
       });
       const data = await res.json();
       if (!res.ok || !data.success) {
-        throw new Error(data.error || 'Failed to parse and analyze file');
+        throw new Error(data.error || 'Failed to parse uploaded document');
       }
 
       setContractText(data.extractedText);
@@ -191,9 +195,9 @@ export default function App() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [apiKey]);
 
-  const handleRunComparison = async (vA, vB) => {
+  const handleRunComparison = useCallback(async (vA, vB) => {
     setIsLoading(true);
     setErrorMsg(null);
     try {
@@ -213,18 +217,18 @@ export default function App() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [apiKey, runAnalysis]);
 
-  const handleAskQuestion = async (question) => {
+  const handleAskQuestion = useCallback(async (question) => {
     const res = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ contractText, question, apiKey })
     });
     return await res.json();
-  };
+  }, [contractText, apiKey]);
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     setContractText('');
     setAnalysis(null);
     setActivePreset(null);
@@ -232,12 +236,16 @@ export default function App() {
     setPrepKitData(null);
     setActiveTab(0);
     setErrorMsg(null);
-  };
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <ErrorBoundary>
+        {/* WCAG 2.1 AA Skip-to-content Link for Keyboard Users */}
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <DisclaimerBanner />
           <Navbar
@@ -365,31 +373,37 @@ export default function App() {
 
                 <Box role="tabpanel" id="tabpanel-2" aria-labelledby="tab-2" hidden={activeTab !== 2}>
                   {activeTab === 2 && (
-                    <ContractComparison
-                      comparisonData={comparisonData}
-                      onRunComparison={handleRunComparison}
-                      isLoading={isLoading}
-                    />
+                    <Suspense fallback={<Box sx={{ py: 6, display: 'flex', justifyContent: 'center' }}><CircularProgress /></Box>}>
+                      <ContractComparison
+                        comparisonData={comparisonData}
+                        onRunComparison={handleRunComparison}
+                        isLoading={isLoading}
+                      />
+                    </Suspense>
                   )}
                 </Box>
 
                 <Box role="tabpanel" id="tabpanel-3" aria-labelledby="tab-3" hidden={activeTab !== 3}>
                   {activeTab === 3 && (
-                    <ChatGrounded
-                      contractText={contractText}
-                      onAskQuestion={handleAskQuestion}
-                      isLoading={isLoading}
-                    />
+                    <Suspense fallback={<Box sx={{ py: 6, display: 'flex', justifyContent: 'center' }}><CircularProgress /></Box>}>
+                      <ChatGrounded
+                        contractText={contractText}
+                        onAskQuestion={handleAskQuestion}
+                        isLoading={isLoading}
+                      />
+                    </Suspense>
                   )}
                 </Box>
 
                 <Box role="tabpanel" id="tabpanel-4" aria-labelledby="tab-4" hidden={activeTab !== 4}>
                   {activeTab === 4 && (
-                    <AttorneyPrepKit
-                      prepKitData={prepKitData}
-                      onGeneratePrepKit={() => {}}
-                      isLoading={isLoading}
-                    />
+                    <Suspense fallback={<Box sx={{ py: 6, display: 'flex', justifyContent: 'center' }}><CircularProgress /></Box>}>
+                      <AttorneyPrepKit
+                        prepKitData={prepKitData}
+                        onGeneratePrepKit={() => {}}
+                        isLoading={isLoading}
+                      />
+                    </Suspense>
                   )}
                 </Box>
               </Box>
@@ -403,10 +417,12 @@ export default function App() {
             onSaveApiKey={handleSaveApiKey}
           />
 
-          <GenAiArchitectureModal
-            open={isArchitectureModalOpen}
-            onClose={() => setIsArchitectureModalOpen(false)}
-          />
+          <Suspense fallback={null}>
+            <GenAiArchitectureModal
+              open={isArchitectureModalOpen}
+              onClose={() => setIsArchitectureModalOpen(false)}
+            />
+          </Suspense>
         </Box>
       </ErrorBoundary>
     </ThemeProvider>
