@@ -7,7 +7,6 @@ import {
   Button,
   Chip,
   Tooltip,
-  IconButton,
   Container
 } from '@mui/material';
 import GavelIcon from '@mui/icons-material/Gavel';

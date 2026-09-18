@@ -17,11 +17,8 @@ import {
   ListItemText
 } from '@mui/material';
 import ArchitectureIcon from '@mui/icons-material/AccountTree';
-import SecurityIcon from '@mui/icons-material/Security';
-import SpeedIcon from '@mui/icons-material/Speed';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import PsychologyIcon from '@mui/icons-material/Psychology';
-import MemoryIcon from '@mui/icons-material/Memory';
 import ShieldIcon from '@mui/icons-material/Shield';
 import TerminalIcon from '@mui/icons-material/Terminal';
 

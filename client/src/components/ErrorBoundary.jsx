@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, Paper, Typography, Button } from '@mui/material';
+import { Container, Paper, Typography, Button } from '@mui/material';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import RefreshIcon from '@mui/icons-material/Refresh';
 

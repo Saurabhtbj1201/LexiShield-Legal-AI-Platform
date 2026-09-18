@@ -17,7 +17,7 @@ import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import SubdirectoryArrowRightIcon from '@mui/icons-material/SubdirectoryArrowRight';
 
-export default function ChatGrounded({ contractText, onAskQuestion, isLoading }) {
+export default function ChatGrounded({ _contractText, onAskQuestion, isLoading }) {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -60,7 +60,7 @@ export default function ChatGrounded({ contractText, onAskQuestion, isLoading })
           }
         ]);
       }
-    } catch (err) {
+    } catch {
       setMessages((prev) => [
         ...prev,
         {

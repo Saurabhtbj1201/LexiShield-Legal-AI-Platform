@@ -21,7 +21,7 @@ import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import confetti from 'canvas-confetti';
 
-export default function AttorneyPrepKit({ prepKitData, onGeneratePrepKit, isLoading }) {
+export default function AttorneyPrepKit({ prepKitData }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopyMarkdown = () => {

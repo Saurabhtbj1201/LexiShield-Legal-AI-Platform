@@ -264,12 +264,18 @@ Exclusive Challenge/
 ├── server/                     # Express backend API
 │   ├── data/
 │   │   └── presetContracts.js  # Curated real-world agreements
+│   ├── middleware/             # Modular middleware layer
+│   │   ├── security.js         # CSP, headers & rate limiters
+│   │   ├── upload.js           # Memory-safe Multer & file filters
+│   │   └── validators.js       # Fail-fast request validators
+│   ├── routes/
+│   │   └── api.js              # Modular Express API router
 │   ├── services/
 │   │   └── legalAiService.js   # Gemini + Heuristic legal engine
 │   ├── tests/
-│   │   └── api.test.js         # Automated test suite
+│   │   └── api.test.js         # Automated test suite (29 tests)
 │   ├── .env.example
-│   ├── index.js                # API routes & static server
+│   ├── index.js                # App initialization & static server
 │   └── package.json
 ├── Dockerfile                  # Production container build
 ├── .dockerignore

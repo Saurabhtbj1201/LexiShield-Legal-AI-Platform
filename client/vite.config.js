@@ -14,6 +14,9 @@ export default defineConfig({
     }
   },
   build: {
+    target: 'es2022',
+    cssCodeSplit: true,
+    sourcemap: false,
     chunkSizeWarningLimit: 800,
     rollupOptions: {
       output: {
@@ -22,7 +25,7 @@ export default defineConfig({
             if (id.includes('@mui') || id.includes('@emotion')) {
               return 'vendor-mui';
             }
-            if (id.includes('lucide-react') || id.includes('canvas-confetti')) {
+            if (id.includes('canvas-confetti')) {
               return 'vendor-utils';
             }
             return 'vendor-core';
