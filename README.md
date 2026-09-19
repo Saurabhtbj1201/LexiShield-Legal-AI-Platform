@@ -23,6 +23,7 @@
 [![Material UI](https://img.shields.io/badge/MUI-v6-007FFF.svg)](https://mui.com/)
 [![Gemini GenAI](https://img.shields.io/badge/GenAI-Google%20Gemini-8E75B2.svg)](https://ai.google.dev/)
 [![Render](https://img.shields.io/badge/Deploy-Render-black?logo=render&logoColor=white)](https://render.com/)
+[![Demo Video](https://img.shields.io/badge/Demo%20Video-YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://youtu.be/61yZztWfxWQ)
 
 </div>
 
@@ -31,11 +32,11 @@
 ## 🌐 Live Deployment & Quick Links
 
 - 🚀 **Live Production Application:** [https://lexishield-ff6f.onrender.com/](https://lexishield-ff6f.onrender.com/)
+- 📺 **Official Project Demo Video:** [https://youtu.be/61yZztWfxWQ](https://youtu.be/61yZztWfxWQ)
 - 🏆 **Hackathon Platform:** [PromptWars Virtual Exclusive Edition](https://promptwars.in/promptwarsVirtual.html)
 - 📊 **Team Dashboard:** [Hack2Skill Event Dashboard](https://hack2skill.com/event/pwvirtualsept/dashboard/roadmap)
 - 🧠 **GenAI Engine:** [Google Gemini 1.5 Flash API](https://ai.google.dev/) via [Google AI Studio](https://aistudio.google.com/)
 - 📦 **GitHub Repository:** [https://github.com/Saurabhtbj1201/LexiShield-Legal-AI-Platform](https://github.com/Saurabhtbj1201/LexiShield-Legal-AI-Platform)
-- 🎥 **Video Recording Guide (<4 min):** [video.md](./video.md)
 
 ---
 
