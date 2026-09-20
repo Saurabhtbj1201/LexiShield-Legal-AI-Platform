@@ -23,7 +23,7 @@
 [![Material UI](https://img.shields.io/badge/MUI-v6-007FFF.svg)](https://mui.com/)
 [![Gemini GenAI](https://img.shields.io/badge/GenAI-Google%20Gemini-8E75B2.svg)](https://ai.google.dev/)
 [![Render](https://img.shields.io/badge/Deploy-Render-black?logo=render&logoColor=white)](https://render.com/)
-[![Demo Video](https://img.shields.io/badge/Demo%20Video-YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://youtu.be/61yZztWfxWQ)
+[![Demo Video](https://img.shields.io/badge/Demo%20Video-YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://youtu.be/4e7KSzLwunM)
 
 </div>
 
